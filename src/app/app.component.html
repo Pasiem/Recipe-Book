@@ -2,8 +2,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-recipe [hidden]="showRecipe"></app-recipe>
-      <app-shoppinglist [hidden]="showShoppingList"></app-shoppinglist>
+      <app-recipe *ngIf="showRecipe"></app-recipe>
+      <app-shoppinglist *ngIf="showShoppingList"></app-shoppinglist>
     </div>
   </div>
 </div>
