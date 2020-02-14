@@ -1,9 +1,9 @@
-<app-header></app-header>
+<app-header (headerSelection)="onHeaderSelection($event)"></app-header>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-recipe></app-recipe>
-      <app-shoppinglist></app-shoppinglist>
+      <app-recipe [hidden]="showRecipe"></app-recipe>
+      <app-shoppinglist [hidden]="showShoppingList"></app-shoppinglist>
     </div>
   </div>
 </div>

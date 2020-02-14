@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+
 
 @Component({
   selector: 'app-header',
@@ -6,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  @Output() headerSelection = new EventEmitter<boolean>();
+  
   constructor() { }
+
+  onHeaderClicked(headerInput: HTMLInputElement) {
+    var selection = headerInput.name;
+    if (selection == "recipe") this.headerSelection.emit(true);
+    else this.headerSelection.emit(false);
+  }
 
   ngOnInit() {
   }
