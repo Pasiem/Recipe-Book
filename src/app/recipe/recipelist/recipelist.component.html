@@ -4,9 +4,14 @@
     </div>
 </div>
 <hr>
-<div *ngFor="let recipe of recipes" class="row">
+<div>
     <div class="col-xs-12">
-        <app-recipeitem [recipe] = "recipe"></app-recipeitem>
+        <app-recipeitem 
+            *ngFor="let recipeEl of recipes" 
+            class="row" 
+            [recipe] = "recipeEl"
+            (click)="onRecipeClicked(recipeEl)">
+        </app-recipeitem>
     </div>
 </div>
 
