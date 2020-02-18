@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
   @Output() headerSelection = new EventEmitter<boolean>();
   
   constructor() { }
-
+//TODO: implement more concise header logic
   onHeaderClicked(headerInput: HTMLInputElement) {
     var selection = headerInput.name;
     if (selection == "recipe") this.headerSelection.emit(true);
