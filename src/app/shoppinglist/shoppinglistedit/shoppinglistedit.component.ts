@@ -15,7 +15,7 @@ export class ShoppinglisteditComponent implements OnInit {
       const name = this.nameInputRef.nativeElement.value;
       const amount = this.amountInputRef.nativeElement.value;
       const ingredient = new Ingredient(name,amount);
-      this.shoppinglistService.ingredientAddRequest.emit(ingredient);
+      this.shoppinglistService.addIngredient(ingredient);
   }
   
   constructor(private shoppinglistService: ShoppingListService) { }

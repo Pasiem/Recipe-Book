@@ -7,7 +7,7 @@ export class ShoppingListService {
         new Ingredient('pickles',3)
       ];
     
-    ingredientAddRequest = new EventEmitter<Ingredient>();
+    shoppingListUpdated = new EventEmitter<{}>();
 
     getIngredients() {
         return this.ingredients.slice();
@@ -15,6 +15,7 @@ export class ShoppingListService {
 
     addIngredient(ingredient: Ingredient) {
         this.ingredients.push(ingredient);
+        this.shoppingListUpdated.emit();
     }
     constructor(){}
 }
