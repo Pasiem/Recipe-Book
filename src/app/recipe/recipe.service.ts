@@ -18,10 +18,7 @@ export class RecipeService {
     }
 
     addIngredientsToShoppingList(recipe: Recipe) {
-        for (var item in recipe.ingredients) {
-            let ingredient = recipe.ingredients[item];
-            this.shoppingListService.addIngredient(ingredient);
-        }
+        this.shoppingListService.addIngredientsFromRecipe(recipe.ingredients);
     }
     constructor(private shoppingListService: ShoppingListService) {
 
