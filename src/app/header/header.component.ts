@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,14 +7,13 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Output() headerSelection = new EventEmitter<boolean>();
   
-  constructor() { }
-//TODO: implement more concise header logic
+  constructor(private router: Router) { }
+
   onHeaderClicked(headerInput: HTMLInputElement) {
-    var selection = headerInput.name;
-    if (selection == "recipe") this.headerSelection.emit(true);
-    else this.headerSelection.emit(false);
+    //var selection = headerInput.name;
+    //if (selection == "recipe") this.router.navigate(['/recipes']);
+    //else this.router.navigate(['/shoppinglist']);
   }
 
   ngOnInit() {
