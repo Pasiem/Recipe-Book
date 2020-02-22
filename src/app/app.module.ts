@@ -13,15 +13,8 @@ import { HeaderComponent } from './header/header.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { ShoppingListService } from './shoppinglist/shoppinglist.service';
+import { AppRoutingModule } from './app-routing.module';
 
-
-const appRoutes: Routes = [
-      {path:'shoppinglist', component: ShoppinglistComponent},
-      {path:'recipes', 
-       component: RecipeComponent,
-       children:[ {path:'detail/:recipename', component: RecipedetailComponent}]
-      }
-    ];
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +30,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule
   ],
   providers: [ShoppingListService],
   bootstrap: [AppComponent]
