@@ -27,7 +27,7 @@ export class RecipedetailComponent implements OnInit {
     //const recipeIndex = +this.route.snapshot.params['recipename']; this method would set the id once and not allow for the selection of new recipe id
     this.route.params.subscribe(
       (params: Params) => {
-         this.recipeIndex = +params['recipename']; 
+         this.recipeIndex = +params['recipeIndex']; 
          this.selectedRecipe = this.recipeService.getRecipeAtIndex(this.recipeIndex);
       }
     )
