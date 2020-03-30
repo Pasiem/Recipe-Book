@@ -1,26 +1,47 @@
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
-import {Ingredient} from '../../shared/ingredient.model';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Ingredient } from '../../shared/ingredient.model';
 import { ShoppingListService } from '../shoppinglist.service';
+import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shoppinglistedit',
   templateUrl: './shoppinglistedit.component.html',
   styleUrls: ['./shoppinglistedit.component.css']
 })
-export class ShoppinglisteditComponent implements OnInit {
-  @ViewChild('nameinput',{static:false}) nameInputRef: ElementRef;
-  @ViewChild('amountinput',{static:false}) amountInputRef: ElementRef;
-  
-  onAddClicked() {
-      const name = this.nameInputRef.nativeElement.value;
-      const amount = this.amountInputRef.nativeElement.value;
-      const ingredient = new Ingredient(name,amount);
-      this.shoppinglistService.addIngredient(ingredient);
+export class ShoppinglisteditComponent implements OnInit, OnDestroy {
+  @ViewChild('f',{static: false}) slform: NgForm;
+  subscription: Subscription;
+  editMode = false;
+  editItemIndex: number;
+  editedItem: Ingredient;
+
+  onAddClicked(form: NgForm) {
+      const value = form.value;
+      const ingredient = new Ingredient( value.name, value.amount);
+      if (this.editMode) this.shoppinglistService.updateIngredient(this.editItemIndex, ingredient);
+      else this.shoppinglistService.addIngredient(ingredient);
   }
   
   constructor(private shoppinglistService: ShoppingListService) { }
 
   ngOnInit() {
+    this.subscription = this.shoppinglistService.startedEditing
+      .subscribe(
+        (index: number) => {
+          this.editMode = true;
+          this.editItemIndex = index;
+          this.editedItem = this.shoppinglistService.getIngredient(index);
+          this.slform.setValue({
+            name: this.editedItem.name,
+            amount: this.editedItem.amount
+          })
+        }
+      );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
