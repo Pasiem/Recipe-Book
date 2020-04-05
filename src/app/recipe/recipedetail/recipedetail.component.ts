@@ -22,6 +22,10 @@ export class RecipedetailComponent implements OnInit {
       this.recipeService.addIngredientsToShoppingList(this.selectedRecipe);
   }
 
+  onDelete() {
+    this.recipeService.deleteRecipe(this.recipeIndex);
+  }
+
   ngOnInit() {
     
     //const recipeIndex = +this.route.snapshot.params['recipename']; this method would set the id once and not allow for the selection of new recipe id
