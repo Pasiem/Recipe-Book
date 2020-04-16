@@ -2,16 +2,20 @@
     <div class="col-xs-12">
         <button routerLink='new' 
                 class="btn btn-success">New Recipe</button>
+        <button class="btn btn-success pull-right" (click)="setSearchStr(search.value)">Search</button>
+        <input type="text" class="pull-right" style="margin: 5px;" #search>
     </div>
 </div>
 <hr>
 <div>
     <div class="col-xs-12">
-        <app-recipeitem      
-            *ngFor="let recipeEl of recipes; let i = index"
-            [recipe] = "recipeEl"
-            [index]="i">
-        </app-recipeitem>
+        <div *ngFor="let recipeEl of recipes| filterList: searchValue: 'name'; let i = index ">
+            <app-recipeitem      
+                *ngIf="recipeEl"
+                [recipe] = "recipeEl"
+                [index]="i">
+            </app-recipeitem>
+        </div>
     </div>
 </div>
 

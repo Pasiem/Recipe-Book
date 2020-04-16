@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RecipestartComponent } from './recipe/recipestart/recipestart.component';
 import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
 import { RecipeService } from './recipe/recipe.service';
+import { SearchFilter } from './shared/filterlist.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RecipeService } from './recipe/recipe.service';
     RecipeComponent,
     DropdownDirective,
     RecipestartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    SearchFilter
   ],
   imports: [
     BrowserModule,

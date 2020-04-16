@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class ShoppinglistComponent implements OnInit, OnDestroy {
   ingredients: Ingredient[];
+  searchValue = "";
   private ingChangeSub: Subscription;
 
   constructor(private shoppinglistService: ShoppingListService) { }
@@ -24,6 +25,10 @@ export class ShoppinglistComponent implements OnInit, OnDestroy {
         this.ingredients = this.shoppinglistService.getIngredients();
       }
     );
+  }
+
+  setSearchStr(searchstr: string) {
+    this.searchValue = searchstr;
   }
 
   ngOnDestroy() {
