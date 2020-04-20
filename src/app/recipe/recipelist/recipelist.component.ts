@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angu
 import { Recipe } from  '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { Subscription } from 'rxjs';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 
 @Component({
   selector: 'app-recipelist',
@@ -14,7 +15,7 @@ export class RecipelistComponent implements OnInit, OnDestroy {
 
   private recipesChangedSub: Subscription;
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(private recipeService: RecipeService, private dataStorage: DataStorageService) { }
   setSearchStr(searchstr: string) {
     this.searchValue = searchstr;
   }
