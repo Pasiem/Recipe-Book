@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
-import { RecipedetailComponent } from './recipe/recipedetail/recipedetail.component';
+import { RecipedetailComponent } from './recipe/recipe-detail/recipe-detail.component';
 import { RecipeitemComponent } from './recipe/recipelist/recipeitem/recipeitem.component';
 import { RecipelistComponent } from './recipe/recipelist/recipelist.component';
 import { ShoppinglistComponent } from './shoppinglist/shoppinglist.component';
@@ -18,6 +18,8 @@ import { RecipestartComponent } from './recipe/recipestart/recipestart.component
 import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
 import { RecipeService } from './recipe/recipe.service';
 import { SearchFilter } from './shared/filterlist.pipe';
+import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { SearchFilter } from './shared/filterlist.pipe';
     DropdownDirective,
     RecipestartComponent,
     RecipeEditComponent,
-    SearchFilter
+    SearchFilter,
+    AuthComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
