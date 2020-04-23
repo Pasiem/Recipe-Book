@@ -1,5 +1,5 @@
 import { Component, AfterContentInit, OnInit } from '@angular/core';
-import { ShoppingListService } from './shopping-list/shopping-list.service';
+import { AuthenticationService } from './auth/auth.service';
 
 
 @Component({
@@ -9,11 +9,11 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
 })
 export class AppComponent implements AfterContentInit, OnInit {
   
-  constructor(private shoppinglistService: ShoppingListService) {}
+  constructor(private authService: AuthenticationService) {}
   
   ngAfterContentInit() {
   }
   ngOnInit() {
-
+    this.authService.autoLogin();
   }
 }

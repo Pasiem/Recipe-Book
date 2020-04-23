@@ -1,7 +1,7 @@
 <nav class="nav bar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" routerLink='auth'>Recipe Book</a>
+            <a class="navbar-brand">Recipe Book</a>
         </div>
         <div class="collapse navbar-collapse" *ngIf="isAuthenticated">
             <ul class="nav navbar-nav">
@@ -10,12 +10,13 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li appDropdown class="dropdown">
-                    <a class="dropdown-toggle" role="button">Manage Data</a>
+                    <a class="dropdown-toggle" role="button">Manage Data <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a (click)="onSaveData()">Save Data</a></li>
                         <li><a (click)="onFetchData()">Fetch Data</a></li>
                     </ul>
-                </li>
+                </li>                
+                <li routerLinkActive="active"><a routerLink='#' (click)="onLogout()">Log Out</a></li>
             </ul>
         </div>
     </div>

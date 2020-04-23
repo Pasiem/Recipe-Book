@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-shopping-list-edit',
+  selector: 'app-shoppinglistedit',
   templateUrl: './shopping-list-edit.component.html',
   styleUrls: ['./shopping-list-edit.component.css']
 })
