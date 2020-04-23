@@ -5,7 +5,7 @@
         </div>
         <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" (click)="errorMessage=null;">&times;</button>
-            <span>An error occured during sign up:     {{errorMessage}}</span>
+            <span>An error occured during {{isLoginMode ? 'Login' : 'Sign Up'}}:     {{errorMessage}}</span>
         </div>
         <form [formGroup]="authenticationForm"
               (ngSubmit)="onSubmit()"

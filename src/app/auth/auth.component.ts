@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, EmailValidator, Validators } from '@angular/forms';
-import { AuthenticationService } from './auth.service';
+import { AuthenticationService, AuthResponseData } from './auth.service';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -13,15 +15,16 @@ export class AuthComponent implements OnInit {
   pwMatch = true;
   errorMessage = null;
   authenticationForm: FormGroup;
+  authObs: Observable<AuthResponseData>;
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
     this.authenticationForm = new FormGroup({
         'email': new FormControl(null, [Validators.email, Validators.required]),
         'passwordinfo': new FormGroup({     
                               'password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
-                              'repeatpassword': new FormControl(null, [Validators.required, Validators.minLength(6), this.validPasswordMatch.bind(this)])
+                              'repeatpassword': new FormControl({value: null, disabled: true}, [Validators.required, Validators.minLength(6), this.validPasswordMatch.bind(this)])
                         }) 
     });
   }
@@ -29,7 +32,6 @@ export class AuthComponent implements OnInit {
   validPasswordMatch(control: FormControl): {[s: string]: boolean} {
     if (this.authenticationForm) {
       if (control.value != this.authenticationForm.get('passwordinfo').get('password').value) {
-        console.log(control.value + "     matches   " +this.authenticationForm.get('passwordinfo').get('password').value);
         this.pwMatch = false;
         return {'passwordsDiffer': true};
       }
@@ -37,31 +39,39 @@ export class AuthComponent implements OnInit {
     this.pwMatch = true;
     return null;
   }
+
   onSwitchMode() {
     this.isLoginMode=!this.isLoginMode;
+    if (this.isLoginMode) {
+      this.authenticationForm.get('passwordinfo').get('repeatpassword').disable();
+    } else {
+      this.authenticationForm.get('passwordinfo').get('repeatpassword').enable();
+    }
   }
 
   onSubmit() {
     this.errorMessage = null;
     
     if (!this.authenticationForm.valid) return;
+    
+    const email = this.authenticationForm.get('email').value;
+    const password = this.authenticationForm.get('passwordinfo').get('password').value;
+    this.isLoading = true;
+    
     if (this.isLoginMode)  {
-      console.log(this.authenticationForm);
+      this.authObs = this.authService.loginUser(email, password);
     } else {
-        const email = this.authenticationForm.get('email').value;
-        const password = this.authenticationForm.get('passwordinfo').get('password').value;
-        
-        this.isLoading = true;
-        this.authService.createNewUser(email, password).subscribe(
-          responsedata => {
-              console.log(responsedata);
-              this.authenticationForm.reset();
-              this.isLoading = false;
-          }, error => {
-              this.errorMessage = error;
-              console.log(error);
-              this.isLoading = false;
-      });
+        this.authObs = this.authService.createNewUser(email, password);
     }
+    this.authObs.subscribe(
+      responsedata => {
+          console.log(responsedata);
+          this.router.navigate(['/recipes']);
+          this.isLoading = false;
+      }, error => {
+          this.errorMessage = error;
+          console.log(error);
+          this.isLoading = false;
+    });
   }
 }
