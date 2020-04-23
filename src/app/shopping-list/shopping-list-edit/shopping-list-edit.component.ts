@@ -1,13 +1,13 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Ingredient } from '../../shared/ingredient.model';
-import { ShoppingListService } from '../shoppinglist.service';
+import { ShoppingListService } from '../shopping-list.service';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-shoppinglistedit',
-  templateUrl: './shoppinglistedit.component.html',
-  styleUrls: ['./shoppinglistedit.component.css']
+  selector: 'app-shopping-list-edit',
+  templateUrl: './shopping-list-edit.component.html',
+  styleUrls: ['./shopping-list-edit.component.css']
 })
 export class ShoppinglisteditComponent implements OnInit, OnDestroy {
   @ViewChild('f',{static: false}) slform: NgForm;

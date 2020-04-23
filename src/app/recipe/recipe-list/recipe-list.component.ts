@@ -6,8 +6,8 @@ import { DataStorageService } from 'src/app/shared/data-storage.service';
 
 @Component({
   selector: 'app-recipelist',
-  templateUrl: './recipelist.component.html',
-  styleUrls: ['./recipelist.component.css']
+  templateUrl: './recipe-list.component.html',
+  styleUrls: ['./recipe-list.component.css']
 })
 export class RecipelistComponent implements OnInit, OnDestroy {
   recipes: Recipe[];

@@ -1,11 +1,10 @@
-import { Injectable, OnInit, OnDestroy } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { RecipeService } from "../recipe/recipe.service";
 import { Recipe } from "../recipe/recipe.model";
 import { map, tap, take, exhaustMap } from 'rxjs/operators';
 import { AuthenticationService } from "../auth/auth.service";
-import { Subscription } from "rxjs";
-import { User } from "../auth/user.model";
+
 
 @Injectable({providedIn: 'root'})
 export class DataStorageService {
