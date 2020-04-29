@@ -8,6 +8,9 @@
 </div>
 <hr>
 <div>
+    <div *ngIf="recipes.length == 0">
+        <span>There are currently no recipes to show! <br> Click <strong>New Recipe</strong> to begin building your Recipe Book!</span>
+    </div>
     <div class="col-xs-12">
         <div *ngFor="let recipeEl of recipes| filterList: searchValue: 'name'; let i = index ">
             <app-recipeitem      

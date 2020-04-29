@@ -20,12 +20,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     //if (selection == "recipe") this.router.navigate(['/recipes']);
     //else this.router.navigate(['/shoppinglist']);
   }
+  
   onFetchData() {
-    this.dataStorage.fetchData().subscribe();
+    this.dataStorage.fetchData();
   }
+
   onSaveData() {
-    this.dataStorage.storeRecipes();
+    this.dataStorage.saveData();
   }
+
   onLogout() {
     this.authService.logout();
     this.isAuthenticated = false;
